@@ -11,18 +11,18 @@ from math import cos, exp, factorial
 
 """
 
-x = np.linspace(-0.25, 0.25, num=200)
+x = np.linspace(-1, 1, num=200)
 # a value close to 0; f(0) not defined
-a = (1/128)
-#x[int(200/2)]
+a = x[int(200/2)]
 #degrees
+deg_1 = [2, 4, 6, 8]
 
 # f(x) = 1/x* integral from 0->x of 
 # integrand's domain value. 
 # uses very neat integration function
 # from the scipy library.
 def f(t):
-  return (1/(2*t))*(exp(t)-exp(-t))
+  return (1/t)*(1-exp(-t))
 
   
 # generalized derivative: (dy/dx)^n?
@@ -36,16 +36,13 @@ def dydx(v, degree):
   return (f(v+h) - f(v))/(h)
 
 # nth_tayl() is just nth_tayl2()
-# here, i multiplied each iteration
-# by a weight of 8^i where i is an
-# element of n.
 # Finds nth taylor polynomial
 def nth_tayl(n):
   if n >= 0:
     summation = np.zeros(len(x))
     for i in range(n+1):
       for j in range(len(x)):
-        summation[j] += pow(8,i)*(dydx(a, i)*pow((x[j]-a), i))/factorial(i)
+        summation[j] += (dydx(a, i)*pow((x[j]-a), i))/factorial(i)
   return summation
 
 # array of domain values for Pn(x)
@@ -59,7 +56,7 @@ fx = [f(i) for i in x]
 
 fig, ax = plt.subplots()
 
-#ax.set_aspect('equal')
+ax.set_aspect('equal')
 ax.grid(True, which='both')
 
 ax.axhline(y=0, color='k')
@@ -76,10 +73,10 @@ ax.plot(x, p[3], 'y--', label='P4(x)')
 # this allows us to see the curvature 
 # more obviously. also helps check the
 # polynomial outputs
-ax.set_ylim(ymin=0.995, ymax=1.0105)
+#ax.set_ylim(ymin=0.485, ymax=0.505)
 
-#ax.legend()
-plt.title("f(x) = (e^x - e^-x)/(2x)")
-#plt.savefig("q6_c_weight.png")
+ax.legend()
+plt.title("f(x) = (1 - e^-x)/x")
+#plt.savefig("q6_b.png")
 
 plt.show()
