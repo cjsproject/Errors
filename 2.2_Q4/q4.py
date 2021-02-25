@@ -5,7 +5,7 @@ import numpy as np
 
 x = np.linspace(-1.5, 1.5, num=200)
 
-
+# creates callable f(x)
 def f(t):
   return (exp(-1*pow(t,2)))
 
@@ -15,15 +15,17 @@ def t_approx(t):
 fx = [f(i) for i in x]
 px = [t_approx(i) for i in x]
 
+# xt-xa 
 error = [abs(f - p) for f, p in zip(fx, px)]
-
+# (xt-xa)/xt
 rel_error = [ abs(f - p)/f for f, p in zip(fx, px)]
-
 
 print(fx, px, sep='\n')
 
 fig, ax = plt.subplots(2)
 
+# ax[0] has the error plots
+# ax[1] is the P(x) and f(x)
 ax[0].set_aspect('equal')
 ax[0].grid(True, which='both')
 ax[1].set_aspect('equal')

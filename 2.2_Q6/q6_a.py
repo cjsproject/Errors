@@ -1,31 +1,24 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import scipy.integrate as integrate
-from math import cos, exp, factorial
+from math import exp, factorial
 
-### you can simply run this code by 
-### clicking run at the top for cost
-### same code as main.py
 
 """
+f(x) = (e^x - 1)/x
 
 """
 
 x = np.linspace(-1, 1, num=200)
 # a value close to 0; f(0) not defined
 a = x[int(200/2)]
-#degrees
-deg_1 = [2, 4, 6, 8]
 
-# f(x) = 1/x* integral from 0->x of 
-# integrand's domain value. 
-# uses very neat integration function
-# from the scipy library.
+
+# callable function of x
 def f(t):
   return (1/t)*(exp(t)-1)
 
   
-# generalized derivative: (dy/dx)^n?
+# generalized derivative: (dy/dx)^n
 def dydx(v, degree):
   h = exp(-5)
   if degree == 0: 
@@ -68,12 +61,6 @@ ax.plot(x, p[0], 'r--', label='P1(x)')
 ax.plot(x, p[1], 'g--', label='P2(x)')
 ax.plot(x, p[2], 'b--', label='P3(x)')
 ax.plot(x, p[3], 'y--', label='P4(x)')
-
-# take note of the very small range of y
-# this allows us to see the curvature 
-# more obviously. also helps check the
-# polynomial outputs
-#ax.set_ylim(ymin=0.485, ymax=0.505)
 
 ax.legend()
 plt.title("f(x) = (e^x - 1)/x")

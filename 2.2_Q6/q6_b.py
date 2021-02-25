@@ -1,13 +1,10 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.misc import derivative
-from math import cos, exp, factorial
+from math import exp, factorial
 
-### you can simply run this code by 
-### clicking run at the top for cost
-### same code as main.py
 
 """
+f(x) = (1 - e^-x)/x
 
 """
 
@@ -17,10 +14,6 @@ a = x[int(200/2)]
 #degrees
 deg_1 = [2, 4, 6, 8]
 
-# f(x) = 1/x* integral from 0->x of 
-# integrand's domain value. 
-# uses very neat integration function
-# from the scipy library.
 def f(t):
   return (1/t)*(1-exp(-t))
 
@@ -35,7 +28,7 @@ def dydx(v, degree):
   
   return (f(v+h) - f(v))/(h)
 
-# nth_tayl() is just nth_tayl2()
+
 # Finds nth taylor polynomial
 def nth_tayl(n):
   if n >= 0:
@@ -44,6 +37,7 @@ def nth_tayl(n):
       for j in range(len(x)):
         summation[j] += (dydx(a, i)*pow((x[j]-a), i))/factorial(i)
   return summation
+
 
 # array of domain values for Pn(x)
 p = []
@@ -69,10 +63,6 @@ ax.plot(x, p[1], 'g--', label='P2(x)')
 ax.plot(x, p[2], 'b--', label='P3(x)')
 ax.plot(x, p[3], 'y--', label='P4(x)')
 
-# take note of the very small range of y
-# this allows us to see the curvature 
-# more obviously. also helps check the
-# polynomial outputs
 #ax.set_ylim(ymin=0.485, ymax=0.505)
 
 ax.legend()

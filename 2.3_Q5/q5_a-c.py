@@ -1,4 +1,5 @@
 from math import atan, cos, log
+## Same code as 2.3_Q5
 
 def f1(x):
   return cos(x)

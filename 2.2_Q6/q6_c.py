@@ -1,26 +1,16 @@
 import numpy as np
 from matplotlib import pyplot as plt
-from scipy.misc import derivative
-from math import cos, exp, factorial
-
-### you can simply run this code by 
-### clicking run at the top for cost
-### same code as main.py
+from math import exp, factorial
 
 """
-
+f(x) = (e^x - e^-x)/(2x)
 """
 
 x = np.linspace(-0.25, 0.25, num=20)
 # a value close to 0; f(0) not defined
 a = 0.25
-#x[int(200/2)]
-#degrees
 
-# f(x) = 1/x* integral from 0->x of 
-# integrand's domain value. 
-# uses very neat integration function
-# from the scipy library.
+
 def f(t):
   return (1/(2*t))*(exp(t)-exp(-t))
 
@@ -35,7 +25,6 @@ def dydx(v, degree):
   
   return (f(v+h) - f(v))/(h)
 
-# nth_tayl() is just nth_tayl2()
 # Finds nth taylor polynomial
 def nth_tayl(n):
   if n >= 0:
@@ -75,7 +64,7 @@ ax.plot(x, p[3], 'y--', label='P4(x)')
 # polynomial outputs
 ax.set_ylim(ymin=0.965, ymax=1.015)
 
-#ax.legend()
+ax.legend()
 plt.title("f(x) = (e^x - e^-x)/(2x)")
 #plt.savefig("q6_c.png")
 
